@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>sobre mí</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            /*========================================
+            ANIMACION 1: Fade In (aparición gradual)
+            =========================================*/
+            @keyframes faseIn {
+                0% {
+                    opacity: 0;
+                    transform:translateY(20px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /*=====================================
+            ANIMACION 2: Pulse (latido infinito)
+            ======================================*/
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                    box-shadow: 0 0 0 0 rgba(3, 3, 242, 0.7);
+                }
+                50% {
+                    transform: scale(1.05);
+                    box-shadow: 0 0 0 10px rgba(242,3,116,0)
+                }
+            }
+
+            /*=======================================
+            APLICAR ANIMACIONES A ALEMENTOS
+            ========================================*/
+            .aparecer {
+                animation: fadeIn 0.8s ease-out forwards;
+            }
+
+            .boton-pulsante {
+                background-color: #0372f2;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                animation: pulse 2s infinite;
+            }
+            .elemento-1 {
+                animation: slideInLeft 0.6s ease-out forwards;
+            }
+            .elemeto-2 {
+                animation: slindeInLeft 0.6s ease-out forwards;
+                animation-delay: 0.2s;
+            }
+            .elemeto-3 {
+                animation: slideInLeft 0.6s ease-out forwards;
+                animation-delay: 0.4s;
+            }
+
+            /*=========================================
+            PROPIEDADES INDIVIDUALES DE ANIMACION 
+            ==========================================*/
+            .animacion-completa {
+                animation-name: fadeIn;
+                animation-duration: 1s;
+                animation-timing-function: ease-in-out;
+                animation-delay: 0.5s;
+                animation-iteration-count: 3;
+                animation-direction: alternate;
+                animation-fill-mode: forwards;
+            }
+
+            .animacion-corta {
+                animation: fadeIn 1s ease-in-out 0.5s 3 alternate forwards;
+            }
+        .container {
+ width: 100%;
+}
+
+/* Tablet */
+@media (min-width: 769px) {
+ body { background: rgb(255, 255, 255); }
+ .container { width: 90%; }
+}
+
+/* Escritorio */
+@media (min-width: 1025px) {
+ body { background: yellow; }
+ .container { width: 80%; }
+}
+        h1{
+            color: #2775c4;
+        }
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;      
+    color: #101010;                   
+    line-height: 1.5;               
+}
+a{
+    color: black;
+}
+/*================================================
+        TEMA CLARO (Valores por defecto en :root)
+        ==============================================*/ 
+        :root {
+            --color-fondo: #ffffff; /*Fondo blanco*/ 
+            --color-texto: #222222; /*Texto oscuro*/ 
+            --color-tarjeta: #f8f9fa; /*Tarjetas gris claro*/ 
+            --color-borde: #dee2e6; /*Bordes suevas*/ 
+            --sombres: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /*==============================================
+        TEMA OSCURO (sobreescribe variables)
+        =================================================*/
+        [data-tema="oscuro"] {
+            --color-fondo: #1a1a2e; /*Fondo azul muy oscuro*/
+            --color-texto: #eaeaea; /*Texto claro*/
+            --color-tarjeta: #16213e; /*Tarjetas azul oscuro*/
+            --color-borde: #0f3460; /*Bordes azules*/
+            --sombra: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        /*==================================================
+        COMPONENTES (usan variables, no colores fijos)
+        =================================================*/
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s; /*Transición suave*/ 
+            padding: 20px;
+        }
+
+        .tarjeta {
+            background-color: var(--color-tarjeta);
+            border: 1px solid var(--color-borde);
+            box-shadow: var(--sombra);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: var(--color-borde);
+            color: var(--color-texto);
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <a href="sugerencias.html">Ir a la siguiente página</a>
+    <br>
+    <a href="index.html">regresar a la primera pagina</a>
+    <h1>Mi Relación Personal Con El TEma</h1>
+
+    <div class="tarjeta">
+        <p>Mi relación con este tema nace de una profunda admiración por la capacidad de Vincent van Gogh para transformar 
+            su mundo interior en pinceladas llenas de vida, color y emoción.</p>
+    </div>
+
+    <button id="toggleTema" class="boton-pulsante">Cambiar tema</button>
+
+    <script>
+        //====================================================
+        //BOTÓN PARA CAMBIAR TEMA (JavaScript)
+        //======================================
+        document.getElementById('toggleTema').addEventListener('click', () => {
+            const temaActual = document.documentElement.getAttribute('data-tema');
+            const nuevoTema = temaActual === 'oscuro' ? 'claro' : 'oscuro';
+            document.documentElement.setAttribute('data-tema', nuevoTema);
+        })
+    </script>
+</body>
+</html>

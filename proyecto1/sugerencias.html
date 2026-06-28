@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        form {
+    display: flex;
+    flex-direction: column; 
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #3f45ff;
+    border-radius: 8px;
+}
+        /*Campo de texto en estado normal*/
+        input[type="text"] {
+            border: 2px solid #ccc;   /*Borde blanco*/
+            padding: 10px;   /*Relleno*/
+            outline: none;   /* Quita el outline por defecto*/
+            margin-bottom: 10px;
+            width: 250px; 
+        }
+
+        /*Campo cuando tiene el foco*/
+        input[type="text"]:focus {
+            border-color: #031bf2;    /*Borde azul*/
+            box-shadow: 0 0 8px rgba(75, 3, 242, 0.4);  /*Resplandor*/
+        } 
+
+        /*Tambien aplica a textarea y select*/
+        textarea:focus, select:focus {
+            border-color: #031bf2;
+            box-shadow: 0 0 8px rgba(75,3,242,0.4);
+            outline: none;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .botones {
+    display: flex;
+    gap: 10px; 
+}
+
+.boton {
+            background-color: #ecfe4d; /*Color inicial*/
+            color: rgb(0, 0, 0);  /*Texto negro*/
+            padding: 10px 20px;  /*Relleno fijo*/
+            border-radius: 4px; /*Bordes redondos*/
+            border: none; 
+            cursor: pointer; 
+            transition: all 0.3s ease; /*Anima TODO en 0.3 segundos*/   
+        }
+
+        .boton:hover {
+            background-color: #251094; /*Cambia a azul*/
+            color: rgb(255, 255, 255);  /*Texto blanco*/
+            transform: scale(1.05); /*Crece un 5%*/
+            box-shadow: 0 4px 12px rgba(75,3,242,o.4); /*Sombra azul*/
+        }
+
+        .container {
+ width: 100%;
+}
+
+/* Tablet */
+@media (min-width: 769px) {
+ body { background: rgb(255, 255, 255); }
+ .container { width: 90%; }
+}
+
+/* Escritorio */
+@media (min-width: 1025px) {
+ body { background: yellow; }
+ .container { width: 80%; }
+}
+        h1{
+            color: #0a57a3;
+        }
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;      
+    color: #101010;                   
+    line-height: 1.5;               
+}
+a{
+    color: black;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Formulario:</h1>
+
+    <form>
+        <!--Grupo de información personal-->
+        <fieldset>
+            <legend>Información Personal</legend>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Escribre tu nombre" name="nombre" required>
+        </fieldset>
+        <!--Grupo de preferencias-->
+        <fieldset>
+            <legend>Preferencias</legend>
+<label for="opcion">Artista que deberia de estar:</label>
+        <select id="opcion" name="opcion" required>
+            <option value="">--Elige --</option>
+            <option value="1">Claude Monet </option>
+            <option value="2">Pablo Picasso</option>
+            <option value="3">Gustav Klimt</option>
+        </select>
+        <label for="comentarios">Razón por la que deberia de estar en la lista:</label>
+        <textarea id="comentarios" rows="4" cols="30" placeholder="Razón" name="comentarios" required></textarea>
+        </fieldset>
+        <br>
+        <br>
+        <div class="botones">
+    <button class="boton" type="submit" onclick="guardarExcel()">Guardar en Excel</button>
+    <button class="boton" type="reset">Borrar</button></div>
+    </form>
+<script>
+function guardarExcel(){
+let nombre=document.getElementById("nombre").value;
+let correo=document.getElementById("comentarios").value;
+let telefono=document.getElementById("opcion").value;
+<!--las coms son para separar los datos-->
+let contenido= "Nombre,Comentarios,opcion,"+ nombre + "," + comentarios; + "," + opcion ;
+let blob = new Blob([contenido], {type: "text/csv"});
+
+let link = document.createElement("a");
+link.href = URL.createObjectURL(blob);
+link.download = "datos.csv";
+link.click();
+
+console.log("Archivo CSV generado y descargado.");
+}
+</script>
+<a href="index.html">Ir a la primera página</a>
+<br>
+<a href="sobre-mi.html">Ir a la anterior página</a>
+</body>
+</html>
